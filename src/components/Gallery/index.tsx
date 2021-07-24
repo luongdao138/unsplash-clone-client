@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { ImageItem, ImagesContainer, Spinner } from './Gallery.styles';
+import { ImagesContainer, Spinner } from './Gallery.styles';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getImages } from '../../features/images/imageSlice';
 import DeleteImageModal from '../DeleteImageModal';
 import { useState } from 'react';
+import Image from '../Image';
 
 const Gallery = () => {
   const {
@@ -28,6 +29,11 @@ const Gallery = () => {
     );
   };
 
+  const handleDeleleImage = (id: string) => {
+    setId(id);
+    setOpenDeleteModal(true);
+  };
+
   if (fetch && !list.length) return <Spinner />;
 
   return (
@@ -47,22 +53,8 @@ const Gallery = () => {
         >
           <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
             <Masonry>
-              {list.map((item, index) => {
-                return (
-                  <ImageItem key={item._id}>
-                    <div className="black"></div>
-                    <img src={item.url} alt="" />
-                    <p>{item.label}</p>
-                    <button
-                      onClick={() => {
-                        setId(item._id);
-                        setOpenDeleteModal(true);
-                      }}
-                    >
-                      delete
-                    </button>
-                  </ImageItem>
-                );
+              {list.map((item) => {
+                return <Image item={item} key={item._id} handleDeleleImage={handleDeleleImage} />;
               })}
             </Masonry>
           </ResponsiveMasonry>
