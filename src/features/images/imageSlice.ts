@@ -101,8 +101,10 @@ const imageSlice = createSlice({
       state.loading.create = true;
     },
     [postImages.fulfilled.type]: (state, { payload }: PayloadAction<Image>) => {
-      state.list.unshift(payload);
-      state.page_info.total_results = state.page_info.total_results + 1;
+      if (payload.label.indexOf(state.searchTerm) !== -1) {
+        state.list.unshift(payload);
+        state.page_info.total_results = state.page_info.total_results + 1;
+      }
       state.loading.create = false;
       state.error = null;
     },
