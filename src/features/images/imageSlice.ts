@@ -24,9 +24,14 @@ type FetchType = {
   searchTerm: string;
 };
 
+// type CreateType = {
+//   url: string;
+//   label: string;
+//   cb: () => void;
+// };
+
 type CreateType = {
-  url: string;
-  label: string;
+  data: FormData;
   cb: () => void;
 };
 
@@ -43,14 +48,11 @@ export const getImages = createAsyncThunk(
   }
 );
 
-export const postImages = createAsyncThunk(
-  'images/create',
-  async ({ url, label, cb }: CreateType) => {
-    const res = await axios.post(`${backendUrl}/images`, { url, label });
-    cb();
-    return res.data;
-  }
-);
+export const postImages = createAsyncThunk('images/create', async ({ data, cb }: CreateType) => {
+  const res = await axios.post(`${backendUrl}/images`, data);
+  cb();
+  return res.data;
+});
 
 export const deleteImages = createAsyncThunk(
   'images/delete',

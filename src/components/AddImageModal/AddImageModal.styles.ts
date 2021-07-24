@@ -106,4 +106,38 @@ export const Spinner = styled.span`
   }
 `;
 
+export const UploadButton = styled.button`
+  padding: 0px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  color: #3db46d;
+`;
+
+export const DropZone = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px dashed #3db46d;
+
+  img.logo {
+    margin-bottom: 10px;
+    width: 60px;
+  }
+
+  img.img {
+    width: 150px;
+  }
+
+  p {
+    color: #bdbdbd;
+    font-size: 12px;
+    font-weight: 500;
+  }
+`;
+
 //#b3d8c2

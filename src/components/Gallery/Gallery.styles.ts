@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const ImagesContainer = styled.div`
   margin: 0 -16px;
+  overflow: hidden;
 
   @media (max-width: 900px) {
     margin: 0 -8px;
