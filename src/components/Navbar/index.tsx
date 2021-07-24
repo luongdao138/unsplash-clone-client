@@ -49,7 +49,15 @@ const Navbar = () => {
       </Content>
       <SmallScreenInput>
         <Icon />
-        <input type="text" placeholder="Search by name" />
+        {/* <input type="text" placeholder="Search by name" /> */}
+        <form onSubmit={handleSearchImages}>
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </form>
       </SmallScreenInput>
     </Wrapper>
   );
